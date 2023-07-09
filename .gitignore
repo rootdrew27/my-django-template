@@ -11,11 +11,14 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-#Settings
+# Settings
 .vscode/* 
 !.vscode/settings.json 
 !.vscode/tasks.json 
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+# Secrets
+#ENV_VARS.json
 
