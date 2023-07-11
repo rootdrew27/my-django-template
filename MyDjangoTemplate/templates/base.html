@@ -1,0 +1,21 @@
+{% load static %}
+<html>
+
+<head>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+
+
+  <div class="container">
+    {% block page_content %}
+    {% endblock %}
+  </div>
+
+  <script src="{% static 'js/jquery.3.7.0.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script> <!--includes Popper-->
+</body>
+
+</html>
