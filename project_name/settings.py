@@ -26,8 +26,6 @@ def getSecret(setting, secrets=secrets):
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-PROJECT_NAME = (str(Path(__file__).resolve().parent)).split('\\')[-1] # returns the directory which contains this file (ie the the Project's Name)
-
 SECRET_KEY = getSecret("SECRET_KEY")
 
 INSTALLED_APPS = [
@@ -50,12 +48,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = PROJECT_NAME + '.urls'
+ROOT_URLCONF = '{{ project_name }}.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ PROJECT_NAME + 'templates/'],
+        'DIRS': ['{{ project_name }}/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +66,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = PROJECT_NAME + '.wsgi.application' 
+WSGI_APPLICATION = '{{ project_name }}.wsgi.application' 
 
 import dj_database_url
 
@@ -147,6 +145,8 @@ if (DEBUG == False):
     ALLOWED_HOSTS = []
 
     STATIC_ROOT = os.path.join( BASE_DIR, 'static_root' )
+
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
     CSRF_COOKIE_SECURE = True
 
