@@ -1,7 +1,8 @@
 from pathlib import Path
 import os
-import json
-from django.core.exceptions import ImproperlyConfigured
+from EnvVarReader import Secrets
+
+secrets = Secrets("ENV_VARS.json")
 
 # For Production
 # -------------------
@@ -12,21 +13,9 @@ from django.core.exceptions import ImproperlyConfigured
 # -------------------
 DEBUG = True
 
-
-with open("ENV_VARS.json") as f:
-    secrets = json.loads(f.read())
-
-def getSecret(setting, secrets=secrets):
-    """Get the secret variable or return explicit exception."""
-    try:
-        return secrets[setting]
-    except KeyError:
-        error_msg = "Set the {0} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = getSecret("SECRET_KEY")
+SECRET_KEY = secrets.getSecret("SECRET_KEY")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -87,7 +76,7 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.mysql',
     #     'NAME': '',
     #     'USER': 'root',
-    #     'PASSWORD': getSecret('DATABASE_PASSWORD'),
+    #     'PASSWORD': secrets.getSecret('DATABASE_PASSWORD'),
     #     'HOST': '127.0.0.1',
     #     'PORT': '3306',
     # }
@@ -96,7 +85,7 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
     #     'NAME': '', 
     #     'USER': 'root', 
-    #     'PASSWORD': getSecret('DATABASE_PASSWORD),
+    #     'PASSWORD': secrets.getSecret('DATABASE_PASSWORD),
     #     'HOST': '127.0.0.1', 
     #     'PORT': '5432',
     # }
