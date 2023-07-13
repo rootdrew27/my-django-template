@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-from EnvVarReader import Secrets
+from EnvVarReader.env_var_reader import Secrets
 
 secrets = Secrets("ENV_VARS.json")
 
