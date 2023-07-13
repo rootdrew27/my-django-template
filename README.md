@@ -1,5 +1,7 @@
 # MyDjangoTemplate
 
-- To set ProjectName: Change main directory name (currently MyDjangoTemplate)
+- Command to use template: "django-admin startproject --template https://github.com/rootdrew27/repo/archive/master.zip <your_project_name> ."
 
-- A production branch can be created and maintained at anytime during development
+- A Production branch can be created and maintained at any time during development
+
+- Push Production Branch to Private Repo 
