@@ -7,4 +7,5 @@ Setup Commands:
 
 Notes: 
 - A Production branch can be created and maintained at any time during development
-- Push Production Branch to Private Repo 
+- Push the Production branch to a Private Repo 
+- Add ENV_VARS.json to your .gitignore file
