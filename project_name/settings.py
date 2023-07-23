@@ -74,8 +74,8 @@ DATABASES = {
 
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': '',
-    #     'USER': 'root',
+    #     'NAME': secrets.getSecret('DATABASE_NAME'),
+    #     'USER': secrets.getSecret('DATABASE_USERNAME'),
     #     'PASSWORD': secrets.getSecret('DATABASE_PASSWORD'),
     #     'HOST': '127.0.0.1',
     #     'PORT': '3306',
@@ -83,8 +83,8 @@ DATABASES = {
 
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': '', 
-    #     'USER': 'root', 
+    #     'NAME': secrets.getSecret('DATABASE_NAME'), 
+    #     'USER': secrets.getSecret('DATABASE_USERNAME'), 
     #     'PASSWORD': secrets.getSecret('DATABASE_PASSWORD),
     #     'HOST': '127.0.0.1', 
     #     'PORT': '5432',
@@ -116,9 +116,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATICFILES_DIR = []
-
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'bootstrap'),
+]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
