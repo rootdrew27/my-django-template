@@ -7,8 +7,7 @@ secrets = Secrets("ENV_VARS.json")
 # For Production
 # -------------------
 # Set DEBUG to False 
-# Set database (migrate if necessary
-# )
+# Set database (migrate if necessary)
 # Adjust the settings at the bottom of this file 
 # -------------------
 DEBUG = True
