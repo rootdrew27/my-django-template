@@ -1,6 +1,8 @@
 {
     "PYTHON_VERSION": "3.10.6",
     "DATABASE_URL": "",
+    "DATABASE_NAME": "",
+    "DATABASE_USERNAME": "",
     "DATABASE_PASSWORD": "",
-    "SECRET_KEY": "django-insecure-=q1eiatwpw8(u%-^u-f&+ewi9uq8-100lzthy&io1y*7l9dp_7"
+    "SECRET_KEY": "django-insecure-=q1eiatwpw8(u%-^u-f&+ewi9uq8-100lzthy&io1y*7l9dp_7",
 }

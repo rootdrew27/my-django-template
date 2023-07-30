@@ -1,7 +1,7 @@
 # MyDjangoTemplate
 
 Setup Commands:
-- python -m pip install Django==4.2.3
+- python -m pip install Django==4.2.3 (May need adjustments for 4.2 or > )
 - django-admin startproject --template https://github.com/rootdrew27/my-django-template/archive/dev.zip <your_project_name> .
 - python -m pip install -r requirements.txt
 

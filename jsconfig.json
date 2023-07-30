@@ -1,0 +1,9 @@
+// Add this file to any App's script directory (configures intellisense for jquery)
+// Note: may need to install TypeScript (pip install typescript)
+{
+    "typeAcquisition": {
+        "include": [
+            "jquery"
+        ]
+    }
+}

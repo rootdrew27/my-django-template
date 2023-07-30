@@ -1,21 +1,31 @@
+#Django
+
+#System
 from pathlib import Path
 import os
+#Third Party
+import dj_database_url
+#Custom
 from EnvVarReader.env_var_reader import Secrets
+
 
 secrets = Secrets("ENV_VARS.json")
 
-# For Production
+SECRET_KEY = secrets.getSecret("SECRET_KEY")
+
+
+DEBUG = True 
+
+# FOR PRODUCTION
 # -------------------
 # Set DEBUG to False 
-# Set database (migrate if necessary
-# )
+# Set database (migrate if necessary)
 # Adjust the settings at the bottom of this file 
 # -------------------
-DEBUG = True
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = secrets.getSecret("SECRET_KEY")
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -28,7 +38,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #used to serve static files in production
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -42,7 +52,7 @@ ROOT_URLCONF = '{{ project_name }}.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['{{ project_name }}/templates/'],
+        'DIRS': [os.path.join(BASE_DIR, '{{ project_name }}/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -57,7 +67,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = '{{ project_name }}.wsgi.application' 
 
-import dj_database_url
+
 
 DATABASES = {
     'default': {
@@ -116,11 +126,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'bootstrap'),
-]
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -128,12 +141,23 @@ SESSION_ENGINE = "django.contrib.sessions.backends.file"
 
 SESSION_FILE_PATH = os.path.join(BASE_DIR, 'SessionFiles')
 
+#Static AND Media
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'bootstrap'),
+]
+
+MEDIA_URL = 'media/'
+
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
-# SETTINGS for Production
+# SETTINGS for Production -----------------------------------------------------------------
 if (DEBUG == False):
 
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['*']
 
     STATIC_ROOT = os.path.join( BASE_DIR, 'static_root' )
 
@@ -142,5 +166,4 @@ if (DEBUG == False):
     CSRF_COOKIE_SECURE = True
 
     SESSION_COOKIE_SECURE = True
-
 
